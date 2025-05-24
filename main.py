@@ -174,7 +174,7 @@ def pedir_nome():
     nome = ""
     ativo = True
     input_box = pygame.Rect(400, 370, 200, 40)
-    box_rect = pygame.Rect(350, 300, 300, 200)  # Quadrado preto de fundo
+    box_rect = pygame.Rect(350, 300, 300, 200)
     cor_box = (0, 0, 0)
     cor_borda = (60, 60, 60)
     cor_input = pygame.Color('lightskyblue3')
@@ -197,13 +197,10 @@ def pedir_nome():
                         nome += evento.unicode
 
         tela.blit(fundoStart, (0,0))
-        # Quadrado preto com borda arredondada
         pygame.draw.rect(tela, cor_box, box_rect, border_radius=25)
         pygame.draw.rect(tela, cor_borda, box_rect, 4, border_radius=25)
-        # Título
         txt = fonte_titulo.render("Digite seu nome:", True, (255,255,255))
         tela.blit(txt, (box_rect.x + 50, box_rect.y + 30))
-        # Caixa de texto
         pygame.draw.rect(tela, cor_input, input_box, 2, border_radius=10)
         txt_nome = fonte.render(nome, True, (255,255,255))
         tela.blit(txt_nome, (input_box.x+10, input_box.y+5))
@@ -219,8 +216,6 @@ def mostrar_botao_jogar(nome):
     azul = (0, 120, 255)
     while True:
         tela.blit(fundoStart, (0,0))
-        # Quadrado preto de fundo (opcional, pode remover se quiser só o botão)
-        # pygame.draw.rect(tela, (0,0,0), (botao_x-25, botao_y-25, botao_largura+50, botao_altura+50), border_radius=30)
         botao_rect = pygame.draw.rect(tela, azul, (botao_x, botao_y, botao_largura, botao_altura), border_radius=20)
         texto = fonte_botao.render("JOGAR", True, (255,255,255))
         tela.blit(texto, (botao_x + (botao_largura-texto.get_width())//2, botao_y + (botao_altura-texto.get_height())//2))
@@ -259,14 +254,13 @@ def dead(pontos):
         
         pygame.draw.rect(tela, cor_box, box_rect, border_radius=25)
         pygame.draw.rect(tela, cor_borda, box_rect, 4, border_radius=25)
-        
+
         tela.blit(fonte_titulo.render("Últimas partidas:", True, (255,255,255)), (box_rect.x + 20, box_rect.y + 20))
         
         for i, linha in enumerate(linhas):
             tela.blit(fonteMenu.render(linha.strip(), True, (255,255,0)), (box_rect.x + 20, box_rect.y + 70 + i*30))
         
         tela.blit(fonteMenu.render(f"Sua pontuação: {pontos}", True, (255,255,255)), (box_rect.x + 20, box_rect.y + 230))
-
         
         startButton = pygame.draw.rect(tela, branco, (10,10, larguraButtonStart, alturaButtonStart), border_radius=15)
         startTexto = fonteMenu.render("Iniciar Game", True, preto)
@@ -329,4 +323,3 @@ def start():
         relogio.tick(60)
 
 start()
-
